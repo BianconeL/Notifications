@@ -93,8 +93,8 @@ public class MainActivity extends BaseActivity {
                         .createSignInIntentBuilder()
                         .setTheme(R.style.LoginTheme)
                         .setAvailableProviders(
-                                Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(), //EMAIL
-                                        new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()))//GOOGLE
+                                Arrays.asList(new AuthUI.IdpConfig.EmailBuilder().build(), //EMAIL
+                                        new AuthUI.IdpConfig.GoogleBuilder().build()))//GOOGLE
                         .setIsSmartLockEnabled(false, true)
                         .setLogo(R.drawable.ic_logo_auth)
                         .build(),
@@ -138,9 +138,9 @@ public class MainActivity extends BaseActivity {
             } else { // ERRORS
                 if (response == null) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_authentication_canceled));
-                } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                } else if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_no_internet));
-                } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+                } else if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     showSnackBar(this.coordinatorLayout, getString(R.string.error_unknown_error));
                 }
             }

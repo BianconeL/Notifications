@@ -150,12 +150,13 @@ public class MentorChatActivity extends BaseActivity implements MentorChatAdapte
                 .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String pathImageSavedInFirebase = taskSnapshot.getMetadata().getDownloadUrl().toString();
+                        String pathImageSavedInFirebase = taskSnapshot.getMetadata().getPath();
                         // B - SAVE MESSAGE IN FIRESTORE
                         MessageHelper.createMessageWithImageForChat(pathImageSavedInFirebase, message, currentChatName, modelCurrentUser).addOnFailureListener(onFailureListener());
                     }
                 })
                 .addOnFailureListener(this.onFailureListener());
+
     }
 
     // --------------------

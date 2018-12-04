@@ -61,7 +61,10 @@ public class NotificationsService extends FirebaseMessagingService {
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
             notificationManager.createNotificationChannel(mChannel);
+        } else {
+            System.out.println("TDR Cannot Receive Notifications");
         }
+
 
         notificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notificationBuilder.build());
     }
